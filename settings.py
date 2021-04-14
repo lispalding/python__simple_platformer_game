@@ -1,24 +1,44 @@
 # MADE BY: Lisette Spalding
+# FILE NAME: main.py
+# DATE CREATED: 02/25/2021
+# MADE BY: Lisette Spalding
 # FILE NAME: settings.py
 # PROJECT NAME: python__simple_platformer_game
 # DATE CREATED: 04/01/2021
-# DATE LAST MODIFIED: 04/132021
+# DATE LAST MODIFIED: 04/14/2021
 # PYTHON VER. USED: 3.8
 
-############ IMPORTS ###########
+################### IMPORTS ####################
 import pygame as pg
 import random as r
-from os import path
+from os import *
+################### FINISHED ###################
+
+########## VARIABLES ###########
+WIDTH = 360
+HEIGHT = 480
+FPS = 30
+
+# Mouse button - Held?
+mouseBttnHeld = False
+
+# Title
+title = "Template"
 ########### FINISHED ###########
 
-######## GAME SETTINGS ########
-TITLE =  "Simple Platformer"
+######### FOLDER SETUP #########
+gameFolder = path.dirname(__file__) # General folder set-up
 
-WIDTH = 480
-HEIGHT = 600
+# Basic image folders
+imageFolder = path.join(gameFolder, "images")
+playerImages = path.join(imageFolder, "player_image")
 
-FPS = 60
-############# FIN #############
+# Basic sound folder
+soundFolder = path.join(gameFolder, "sounds")
+
+# Basic text data folder
+textDataFolder = path.join(gameFolder, "text_data")
+########### FINISHED ###########
 
 ###### COLORS  (R. G. B) ######
 BLACK = (0,0,0)
