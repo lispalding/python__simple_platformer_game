@@ -1,7 +1,7 @@
 # MADE BY: Lisette Spalding
 # FILE NAME: main.py
 # PROJECT NAME: python__simple_platformer_game
-# DATE CREATED: 02/25/2021
+# DATE CREATED: 04/01/2021
 # DATE LAST MODIFIED: 04/132021
 # PYTHON VER. USED: 3.8
 
