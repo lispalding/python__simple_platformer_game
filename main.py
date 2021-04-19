@@ -39,12 +39,24 @@ class Game(object):
         # Creating the sprite groups
         self.allSprites = pg.sprite.Group() # All sprites group
         self.playerGroup = pg.sprite.Group() # Player group
+        self.platformsGroup = pg.sprite.Group() # Platform group
 
         ## Creating the game objects
-        player = Player()
+        self.player = Player()
         # Adding player to sprite groups
-        self.allSprites.add(player)
-        self.playerGroup.add(player)
+        self.allSprites.add(self.player)
+        self.playerGroup.add(self.player)
+
+        # Spawning base platform
+        basePlatform = Platform(0, HEIGHT - 40, WIDTH, 40)
+        # Adding platform to group
+        self.allSprites.add(basePlatform)
+        self.platformsGroup.add(basePlatform)
+
+        # Other Platforms adding
+        plat1 = Platform(WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20)
+        self.allSprites.add(plat1)
+        self.platformsGroup.add(plat1)
 
         # Start running game loop...
         self.run()
@@ -77,10 +89,20 @@ class Game(object):
                     self.playing = False
                 self.running = False
 
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    self.playing = False
+
     def update(self):
         """ To use: self.update()
         This method updates what is shown on the HUD. """
         self.allSprites.update()
+
+        # Collision check between player and platforms
+        hits = pg.sprite.spritecollide(self.player, self.platformsGroup, False)
+        if hits:
+            self.player.position.y = hits[0].rect.top
+            self.player.velocity.y = 0
 
     def draw(self):
         """ To use: self.draw()

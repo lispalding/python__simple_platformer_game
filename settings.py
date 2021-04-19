@@ -15,15 +15,19 @@ from os import *
 ################### FINISHED ###################
 
 ########## VARIABLES ###########
-WIDTH = 360
-HEIGHT = 480
-FPS = 30
+WIDTH = 480
+HEIGHT = 600
+FPS = 60
 
-# Mouse button - Held?
-mouseBttnHeld = False
+# Player Properties
+PLAYER_ACCELERATION = 0.5
+PLAYER_FRICTION = -0.12
+
+PLAYER_WIDTH = 50
+PLAYER_HEIGHT = 50
 
 # Title
-title = "Template"
+title = "Python Platformer"
 ########### FINISHED ###########
 
 ######### FOLDER SETUP #########
