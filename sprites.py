@@ -2,7 +2,7 @@
 # FILE NAME: sprites.py
 # PROJECT NAME: python__simple_platformer_game
 # DATE CREATED: 04/01/2021
-# DATE LAST MODIFIED: 04/18/2021
+# DATE LAST MODIFIED: 04/24/2021
 # PYTHON VER. USED: 3.8
 
 ##################### IMPORTS #####################

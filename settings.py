@@ -1,11 +1,8 @@
 # MADE BY: Lisette Spalding
-# FILE NAME: main.py
-# DATE CREATED: 02/25/2021
-# MADE BY: Lisette Spalding
 # FILE NAME: settings.py
 # PROJECT NAME: python__simple_platformer_game
 # DATE CREATED: 04/01/2021
-# DATE LAST MODIFIED: 04/14/2021
+# DATE LAST MODIFIED: 04/24/2021
 # PYTHON VER. USED: 3.8
 
 ################### IMPORTS ####################
