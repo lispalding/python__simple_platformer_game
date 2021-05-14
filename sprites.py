@@ -99,6 +99,11 @@ class Player(pg.sprite.Sprite):
         This method changed the 'keypressed' value to False."""
         self.keypressed = False
 
+    def jumpCut(self):
+        if self.jumping:
+            if self.velocity.y < -3:
+                self.velocity.y = -3
+
     def jump(self):
         """ To use: self.jump()
         This method makes the player jump. Activated by the space bar; as defined in main.py... """
@@ -110,7 +115,9 @@ class Player(pg.sprite.Sprite):
         self.rect.x -= 2
         ## Setup FIN
 
-        if hits: # Jump if only standing on a platform
+        if hits and not self.jumping: # Jump if only standing on a platform
+            r.choice(self.game.jumpingSounds).play()
+            self.jumping = True
             self.velocity.y += -PLAYER_JUMP
 
     def update(self):

@@ -54,6 +54,24 @@ class Game(object):
         # Loading Images
         self.spritesheet = Spritesheet(path.join(spritesheetImageFolder, SPRITESHEET_FILE))
 
+        # Loading Sounds
+        sound = r.choice(MUSIC_SELECTION)
+        pg.mixer.music.load(path.join(soundFolder, sound))
+
+        if sound == "YIPPEE.ogg":
+            pg.mixer.music.set_volume(0.43)
+
+        self.jumpingSounds = []
+        for sound in JUMPING_SOUNDS:
+            s = pg.mixer.Sound(path.join(soundFolder, sound))
+
+            if sound == "Jump40.wav":
+                s.set_volume(0.4)
+            elif sound == "Jump33.wav":
+                s.set_volume(0.5)
+
+            self.jumpingSounds.append(s)
+
     def new(self):
         """ To use: self.new()
         This method creates a new game. """
@@ -83,6 +101,7 @@ class Game(object):
         This method runs the game. """
         ## Game loop
         self.playing = True
+        pg.mixer.music.play(loops = -1)
 
         while self.playing:
             self.clock.tick(FPS)
@@ -95,6 +114,8 @@ class Game(object):
 
             # Creating the images on the screen
             self.draw()
+
+        pg.mixer.music.fadeout(1000)
 
     def events(self):
         """ To use: self.events()
@@ -114,6 +135,10 @@ class Game(object):
                 if event.key == pg.K_SPACE:
                     self.player.jump()
 
+            if event.type == pg.KEYUP:
+                if event.key == pg.K_SPACE:
+                    self.player.jumpCut()
+
     def update(self):
         """ To use: self.update()
         This method updates what is shown on the HUD. """
@@ -123,8 +148,17 @@ class Game(object):
         if self.player.velocity.y > 0:
             hits = pg.sprite.spritecollide(self.player, self.platformsGroup, False)
             if hits:
-                self.player.position.y = hits[0].rect.top
-                self.player.velocity.y = 0
+                # Setting the lowest platform
+                lowest = hits[0]
+                for hit in hits:
+                    if hit.rect.bottom > lowest.rect.bottom:
+                        lowest = hit
+
+                # If feet are higher than the bottom of the platform, snap to top
+                if self.player.position.y < lowest.rect.centery:
+                    self.player.position.y = lowest.rect.top
+                    self.player.velocity.y = 0
+                    self.player.jumping = False
 
         if self.player.rect.top <= HEIGHT / 4: # When player reaches the top 1/4 of the screen, do this:
             self.player.position.y += max(abs(self.player.velocity.y), 2) # Where abs() means Take The Absolute Value
@@ -171,6 +205,15 @@ class Game(object):
     def showStartingScreen(self):
         """ To use: self.showStartingScreen()
         This method shows the starting screen. """
+        # Loading Sounds
+        sound = r.choice(MUSIC_SELECTION)
+        pg.mixer.music.load(path.join(soundFolder, sound))
+
+        if sound == "YIPPEE.ogg":
+            pg.mixer.music.set_volume(0.43)
+
+        pg.mixer.music.play(loops = -1)
+        
         self.screen.fill(BGCOLOR)
         self.drawText(TITLE, 35, WHITE, WIDTH / 2, HEIGHT / 4.2) # Drawing title on screen, located: center width-wise and top 1/4 of the screen
 
@@ -184,6 +227,8 @@ class Game(object):
 
         pg.display.flip()
         self.waitForKey()
+
+        pg.mixer.music.fadeout(1000)
 
     def showGameOverScreen(self):
         """ To use: self.showGameOverScreen()

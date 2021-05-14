@@ -1,5 +1,9 @@
 # MADE BY: Lisette Spalding
 # ART WORK CREDIT: "Kenney.nl" @ "www.kenney.nl"
+# BACKGROUND MUSIC CREDIT (1): Snabisch
+# SONG TITLE & OPEN GAME ART LINK (1): YIPPEE @ https://opengameart.org/content/yippee-0
+# BACKGROUND MUSIC CREDIT (1): syncopika
+# SONG TITLE & OPEN GAME ART LINK (1): happy tune @ https://opengameart.org/content/happy-tune
 # FILE NAME: settings.py
 # PROJECT NAME: python__simple_platformer_game
 # DATE CREATED: 04/01/2021
@@ -25,7 +29,7 @@ PLAYER_FRICTION = -0.12
 
 PLAYER_GRAVITY = 0.8
 
-PLAYER_JUMP = 20
+PLAYER_JUMP = 23
 
 PLAYER_WIDTH = 25
 PLAYER_HEIGHT = 50
@@ -59,6 +63,9 @@ textDataFolder = path.join(gameFolder, "text_data")
 ############ FOLDER CONSTANTS ############
 HIGHSCORE_FILE = "highscore.txt"
 SPRITESHEET_FILE = "spritesheet_jumper.png"
+
+MUSIC_SELECTION = ["happy_tune.ogg", "YIPPEE.ogg"]
+JUMPING_SOUNDS = ["Jump33.wav", "Jump40.wav"]
 ########## FOLDER CONSTANTS FIN ##########
 ################### FINISHED ###################
 
